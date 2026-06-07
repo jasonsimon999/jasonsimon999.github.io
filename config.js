@@ -5,6 +5,11 @@
  * Central configuration file for Jason Trevor Simon's portfolio.
  */
 const PortfolioConfig = {
+  // --- MEDIA DIRECTORY SETTING ---
+  // If you uploaded your images/videos to a subfolder on GitHub (e.g. a folder named "images"),
+  // change this to "images/". If they are in the root directory alongside index.html, leave it as "".
+  mediaFolder: "images/", 
+
   // --- THEME OPTIONS ---
   theme: {
     accentBlue: "#0072ff",   // Primary accent color (default high-tech blue)
@@ -134,8 +139,7 @@ const PortfolioConfig = {
         { type: "image", src: "5100 image 1.png" },
         { type: "image", src: "5100 image 2.png" },
         { type: "image", src: "5100 image 1 CAD.png" },
-        { type: "image", src: "5100 image 2 CAD.png" },
-        { type: "video", src: "5100 video.MOV" }
+        { type: "image", src: "5100 image 2 CAD.png" }
       ],
       modal: {
         badgeAccent: "Tournament 3rd Seed",

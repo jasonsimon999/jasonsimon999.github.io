@@ -1,4 +1,16 @@
 /* ==========================================
+   DYNAMIC MEDIA PATH RESOLUTION HELPER
+   ========================================== */
+function resolveMediaPath(src) {
+  const folder = PortfolioConfig.mediaFolder || '';
+  // If it's already an external link or data URI, return as-is
+  if (src.startsWith('http') || src.startsWith('data:')) {
+    return src;
+  }
+  return folder + src;
+}
+
+/* ==========================================
    DYNAMIC MEDIA PLAYER LOGIC
    ========================================== */
 window.switchModalMedia = function(projectId, mediaIndex) {
@@ -9,17 +21,19 @@ window.switchModalMedia = function(projectId, mediaIndex) {
   const mainViewport = document.getElementById(`media-main-${projectId}`);
   if (!mainViewport) return;
 
+  const resolvedSrc = resolveMediaPath(mediaItem.src);
+
   // Render video or image
   if (mediaItem.type === 'video') {
     mainViewport.innerHTML = `
-      <video controls muted autoplay loop style="width: 100%; height: 100%; max-height: 380px; object-fit: contain; border-radius: var(--border-radius-sm);">
-        <source src="${mediaItem.src}" type="video/mp4">
+      <video controls autoplay muted loop style="width: 100%; height: 100%; max-height: 380px; object-fit: contain; border-radius: var(--border-radius-sm);">
+        <source src="${resolvedSrc}" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     `;
   } else {
     mainViewport.innerHTML = `
-      <img src="${mediaItem.src}" alt="${project.title}" style="width: 100%; height: 100%; max-height: 380px; object-fit: contain; border-radius: var(--border-radius-sm);">
+      <img src="${resolvedSrc}" alt="${project.title}" style="width: 100%; height: 100%; max-height: 380px; object-fit: contain; border-radius: var(--border-radius-sm);">
     `;
   }
 
@@ -150,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Get first image as card thumbnail cover
     const firstImage = project.media.find(m => m.type === 'image');
-    const imagePath = firstImage ? firstImage.src : '';
+    const imagePath = firstImage ? resolveMediaPath(firstImage.src) : '';
     const imageElement = imagePath 
       ? `<img src="${imagePath}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover;">`
       : `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted);">Blueprint</div>`;
@@ -188,8 +202,9 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
       } else {
+        const resolvedSrc = resolveMediaPath(media.src);
         return `
-          <img class="modal-thumbnail ${idx === 0 ? 'active' : ''}" src="${media.src}" alt="Thumb" onclick="event.stopPropagation(); switchModalMedia('${project.id}', ${idx});">
+          <img class="modal-thumbnail ${idx === 0 ? 'active' : ''}" src="${resolvedSrc}" alt="Thumb" onclick="event.stopPropagation(); switchModalMedia('${project.id}', ${idx});">
         `;
       }
     }).join('');
