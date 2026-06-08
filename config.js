@@ -179,7 +179,7 @@ const PortfolioConfig = {
     {
       id: "turbojet",
       title: "Penn Jet Propulsion Micro Turbojet Engine",
-      shortDescription: "A functioning micro turbojet engine designed and machined fully from scratch.",
+      shortDescription: "A functioning micro turbojet engine that achieved sustained combustion and 140N of thrust.",
       tech: ["Aerospace", "Propulsion", "CNC Machining"],
       category: "mechanical",
       media: [
