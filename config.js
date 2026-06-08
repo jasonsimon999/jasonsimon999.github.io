@@ -194,7 +194,7 @@ const PortfolioConfig = {
         period: "August 2024 - May 2025",
         bullets: [
           "Part of a team creating the first functioning micro turbojet engine fully developed from scratch by undergraduate students",
-          "Engine achieved sustained combustion during testing and has a theoretical thrust of 140N and thrust to weight ratio of 3.5",
+          "Engine achieved sustained combustion during testing and has a thrust of 140N and thrust to weight ratio of 3.5",
           "Designed in SolidWorks and manufactured using a ProtoTrak mill and lathe a new mount to hold the engine securely during future testing",
           "Worked with 2 other students to design the combustion chamber and plan out the overarching integration and interfacing of all the subsystems"
         ]
@@ -203,7 +203,7 @@ const PortfolioConfig = {
     {
       id: "stirling",
       title: "Stirling Heat Engine",
-      shortDescription: "A high-speed Stirling heat engine designed and fabricated from scratch.",
+      shortDescription: "A high-speed Stirling heat engine designed and fabricated from scratch that reached 1350+ RPM.",
       tech: ["SolidWorks", "Precision Machining", "Kinematics"],
       category: "mechanical",
       media: [
