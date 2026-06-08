@@ -105,7 +105,7 @@ const PortfolioConfig = {
     {
       id: "bb8",
       title: "Star Wars BB-8 Droid",
-      shortDescription: "A fully functional, radio-controlled BB-8 replica featuring a custom pendulum drive chassis and floating magnetic head tracking",
+      shortDescription: "A fully functional, radio-controlled BB-8 replica featuring a custom pendulum drive chassis and floating magnetic head tracking.",
       tech: ["Mechanical Design", "Mechatronics", "ESP32-S2 / C3"],
       category: "robotics",
       media: [
@@ -130,7 +130,7 @@ const PortfolioConfig = {
     {
       id: "meam510",
       title: "Mechatronics Autonomous Vehicle",
-      shortDescription: "An autonomous robot utilizing Time-of-Flight dynamic avoidance and Vive photodiode bilinear localization",
+      shortDescription: "An autonomous robot utilizing Time-of-Flight dynamic avoidance and Vive photodiode bilinear localization.",
       tech: ["Autonomous Systems", "Sensor Fusion", "Mechatronics"],
       category: "robotics",
       media: [
@@ -155,7 +155,7 @@ const PortfolioConfig = {
     {
       id: "sensor4150",
       title: "Proximity Sensor Wearable for Runners",
-      shortDescription: "A lightweight running built with rear awareness sensing for safer runs",
+      shortDescription: "A lightweight running belt with rear awareness haptic feedback for safer runs.",
       tech: ["Wearable Tech", "ESP32-C3", "Sensors"],
       category: "embedded",
       media: [
@@ -179,7 +179,7 @@ const PortfolioConfig = {
     {
       id: "turbojet",
       title: "Penn Jet Propulsion Micro Turbojet Engine",
-      shortDescription: "A functioning micro turbojet engine designed and machined fully from scratch",
+      shortDescription: "A functioning micro turbojet engine designed and machined fully from scratch.",
       tech: ["Aerospace", "Propulsion", "CNC Machining"],
       category: "mechanical",
       media: [
@@ -203,7 +203,7 @@ const PortfolioConfig = {
     {
       id: "stirling",
       title: "Stirling Heat Engine",
-      shortDescription: "A high-speed Stirling heat engine designed and fabricated from scratch",
+      shortDescription: "A high-speed Stirling heat engine designed and fabricated from scratch.",
       tech: ["SolidWorks", "Precision Machining", "Kinematics"],
       category: "mechanical",
       media: [
