@@ -105,7 +105,7 @@ const PortfolioConfig = {
     {
       id: "bb8",
       title: "Star Wars BB-8 Droid",
-      shortDescription: "A fully functional, radio-controlled BB-8 replica featuring a custom pendulum drive chassis, floating magnetic head tracking, and real-time WiFi telemetry.",
+      shortDescription: "A fully functional, radio-controlled BB-8 replica featuring a custom pendulum drive chassis and floating magnetic head tracking",
       tech: ["Mechanical Design", "Mechatronics", "ESP32-S2 / C3"],
       category: "robotics",
       media: [
@@ -115,7 +115,7 @@ const PortfolioConfig = {
         { type: "video", src: "BB8 video.mov" }
       ],
       modal: {
-        badgeAccent: "Mechatronics Highlight",
+        badgeAccent: "Mechatronics",
         location: "Independent Project (Team of 10)",
         period: "April 2026 - May 2026",
         bullets: [
@@ -129,8 +129,8 @@ const PortfolioConfig = {
     },
     {
       id: "meam510",
-      title: "MEAM 5100 Autonomous Vehicle",
-      shortDescription: "A heavy-duty, autonomous combat robot utilizing Time-of-Flight dynamic avoidance, Vive photodiode bilinear localization transforms, and custom 3-tier PCB towers.",
+      title: "Mechatronics Autonomous Vehicle",
+      shortDescription: "An autonomous robot utilizing Time-of-Flight dynamic avoidance and Vive photodiode bilinear localization",
       tech: ["Autonomous Systems", "Sensor Fusion", "Mechatronics"],
       category: "robotics",
       media: [
@@ -140,7 +140,7 @@ const PortfolioConfig = {
         { type: "image", src: "5100 image 2 CAD.png" }
       ],
       modal: {
-        badgeAccent: "3rd Highest Score Overall",
+        badgeAccent: "Mechatronics & Autonomous Systems",
         location: "Meam 5100 Project (Team of 3)",
         period: "April 2026 - May 2026",
         bullets: [
@@ -154,8 +154,8 @@ const PortfolioConfig = {
     },
     {
       id: "sensor4150",
-      title: "MEAM 4150 Proximity Sensor Wearable",
-      shortDescription: "A wearable running safety belt. Integrates Time-of-Flight sensors and proportional waist haptics to alert runners of approaching vehicle threats.",
+      title: "Proximity Sensor Wearable for Runners",
+      shortDescription: "A lightweight running built with rear awareness sensing for safer runs",
       tech: ["Wearable Tech", "ESP32-C3", "Sensors"],
       category: "embedded",
       media: [
@@ -179,7 +179,7 @@ const PortfolioConfig = {
     {
       id: "turbojet",
       title: "Penn Jet Propulsion Micro Turbojet Engine",
-      shortDescription: "A functioning micro turbojet engine designed and machined fully from scratch, achieving sustained stable combustion and 140N of thrust.",
+      shortDescription: "A functioning micro turbojet engine designed and machined fully from scratch",
       tech: ["Aerospace", "Propulsion", "CNC Machining"],
       category: "mechanical",
       media: [
@@ -189,7 +189,7 @@ const PortfolioConfig = {
         { type: "image", src: "Jet Engine image 4.png" }
       ],
       modal: {
-        badgeAccent: "PJP Group Highlight",
+        badgeAccent: "Mechanical Design & Fabrication",
         location: "Penn Jet Propulsion Club",
         period: "August 2024 - May 2025",
         bullets: [
@@ -202,8 +202,8 @@ const PortfolioConfig = {
     },
     {
       id: "stirling",
-      title: "Custom Stirling Heat Engine",
-      shortDescription: "A high-speed Stirling heat engine featuring custom Deadpool aesthetic geometries and low-friction metal links reaching 1,350+ RPM.",
+      title: "Stirling Heat Engine",
+      shortDescription: "A high-speed Stirling heat engine designed and fabricated from scratch",
       tech: ["SolidWorks", "Precision Machining", "Kinematics"],
       category: "mechanical",
       media: [
@@ -212,7 +212,7 @@ const PortfolioConfig = {
         { type: "image", src: "Heat Engine image 3.png" }
       ],
       modal: {
-        badgeAccent: "Mechanical Design",
+        badgeAccent: "Mechanical Design & Fabrication",
         location: "MEAM 2010 Project",
         period: "January 2024 - May 2024",
         bullets: [
