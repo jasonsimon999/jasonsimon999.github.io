@@ -20,21 +20,21 @@ const PortfolioConfig = {
 
   // --- PROFILE & HERO SECTION ---
   profile: {
-    name: "Jason Trevor Simon",
-    tagline: "JUNIOR AT THE UNIVERSITY OF PENNSYLVANIA",
-    title: "Jason Trevor Simon | Systems, Robotics & Aerospace Portfolio",
-    description: "I am a junior at the University of Pennsylvania studying mechanical engineering. I am deeply interested in artificial intelligence, robotics, aerospace, and entrepreneurship, operating at the intersection of custom hardware design and autonomous control.",
-    location: "Orange, CA 92867",
+    name: "Jason Simon",
+    // tagline: "Building autonomous systems and AI Hardware. Feel free to reach out!",
+    title: "Jason Simon | Building Autonomous Systems and AI Hardware",
+    description: "Currently interning at Shield AI working on the development of the X-Bat autonomous drone \n Past experience ranges from engineering automation cells at SpaceX to building collaborative lunar mechanisms for NASA \n Interested in artificial intelligence, robotics, aerospace, entrepreneurship, and investing",
+    location: "Home: SoCal | School: Philly",
     email: "jasonsimon343@gmail.com",
     phone: "714-833-0623",
     linkedin: "https://www.linkedin.com/in/jason-simon3",
-    github: "#", // Placeholders for other links
+    github: "#",
     
-    // Academic Credentials
+    // Academic Credentials (the 3 blocks)
     education: [
-      { value: "UPenn Junior", label: "Mechanical Engineering" },
-      { value: "4.0 / 4.0", label: "Cumulative GPA" },
-      { value: "Minors", label: "Entrep. & Mathematics" }
+      { value: "MS + BSE, Mechanical Engineering", label: "UPenn | May 2027 (pursuing both degrees simultaneously)" },
+      { value: "4.0 / 4.0 GPA", label: "Cumulative (MS+BSE)" },
+      { value: "Minors", label: "Entrepreneurship & Math" }
     ]
   },
 
@@ -58,9 +58,9 @@ const PortfolioConfig = {
     },
     {
       role: "Undergraduate Student Researcher",
-      company: "NASA LSTR (Modular Robotics Lab)",
+      company: "NASA LuSTR (Modular Robotics Lab)",
       location: "Philadelphia, PA",
-      period: "September 2023 – May 2025",
+      period: "Sept 2023 – May 2025",
       metrics: [
         { value: "$2.0M", label: "NASA Grant Scope" },
         { value: "5.0m", label: "Linkage Reach" },
@@ -102,14 +102,13 @@ const PortfolioConfig = {
   ],
 
   // --- PORTFOLIO PROJECTS LIST ---
-  // The first item in "media" of type "image" will be used as the card cover.
   projects: [
     {
       id: "bb8",
       title: "Star Wars BB-8 Droid",
       shortDescription: "A fully functional, radio-controlled BB-8 replica featuring a custom pendulum drive chassis, floating magnetic head tracking, and real-time WiFi telemetry.",
-      tech: ["AI & Robotics", "Mechatronics", "ESP32-S2 / C3"],
-      category: "embedded",
+      tech: ["Mechanical Design", "Mechatronics", "ESP32-S2 / C3"],
+      category: "robotics",
       media: [
         { type: "image", src: "BB8 image 1.jpeg" },
         { type: "image", src: "BB8 image 2.jpeg" },
@@ -118,10 +117,10 @@ const PortfolioConfig = {
       ],
       modal: {
         badgeAccent: "Mechatronics Highlight",
-        location: "Independent Project",
-        period: "Completed 2026",
+        location: "Independent Project (Team of 10)",
+        period: "April 2026 - May 2026",
         bullets: [
-          "Designed and fabricated a fully functional, radio-controlled Star Wars BB-8 replica droid from scratch featuring a 16.125-inch outer diameter hollow body",
+          "Designed and fabricated a fully functional, radio-controlled Star Wars BB-8 replica droid from scratch featuring a 16.125-inch outer diameter hollow body for less than $200",
           "Engineered an active, stabilized floating head mechanism using three high-grade Neodymium magnets and omnidirectional ball bearing casters to counteract physical magnetic forces during rotation",
           "Built a custom internal pendulum drive chassis housing motor mounts, batteries, and controllers that remain vertically stabilized by gravity as the sphere rotates around it",
           "Programmed dual microcontroller logic with an ESP32-S2 for locomotion torque ramps and an ESP32-C3 for wireless live MJPEG video telemetry to an HTML dashboard",
@@ -133,8 +132,8 @@ const PortfolioConfig = {
       id: "meam510",
       title: "MEAM 5100 Autonomous Vehicle",
       shortDescription: "A heavy-duty, autonomous combat robot utilizing Time-of-Flight dynamic avoidance, Vive photodiode bilinear localization transforms, and custom 3-tier PCB towers.",
-      tech: ["Autonomous Systems", "Sensor Fusion", "PCB Design"],
-      category: "software",
+      tech: ["Autonomous Systems", "Sensor Fusion", "Mechatronics"],
+      category: "robotics",
       media: [
         { type: "image", src: "5100 image 1.png" },
         { type: "image", src: "5100 image 2.png" },
@@ -142,9 +141,9 @@ const PortfolioConfig = {
         { type: "image", src: "5100 image 2 CAD.png" }
       ],
       modal: {
-        badgeAccent: "Tournament 3rd Seed",
-        location: "University of Pennsylvania",
-        period: "Spring 2025",
+        badgeAccent: "3rd Highest Score Overall",
+        location: "Meam 5100 Project (Team of 3)",
+        period: "April 2026 - May 2026",
         bullets: [
           "Designed, built, and programmed an autonomous combat vehicle to navigate unstructured fields, avoid obstacles, and capture target milestones under zero-latency network restrictions",
           "Soldered a vertical three-tier perfboard PCB tower to route command signals, isolate low-voltage sensor inputs, and prevent high-current motor EMI brownouts",
@@ -168,8 +167,8 @@ const PortfolioConfig = {
       ],
       modal: {
         badgeAccent: "Sensors & Haptics",
-        location: "MEAM 4150 Project",
-        period: "Completed 2025",
+        location: "MEAM 4150 Project (team of 4)",
+        period: "April 2026 - May 2026",
         bullets: [
           "Designed and fabricated a wearable athletic running safety belt to detect rear-approaching vehicles and alert the runner via localized waist haptics",
           "Developed C++ firmware on an ultra-compact ESP32-C3 (M5Stamp Core) to sample long-range Time-of-Flight (TOF4M) distance data independent of lighting conditions",
@@ -192,8 +191,8 @@ const PortfolioConfig = {
       ],
       modal: {
         badgeAccent: "PJP Group Highlight",
-        location: "University of Pennsylvania",
-        period: "2024 - 2025",
+        location: "Penn Jet Propulsion Club",
+        period: "August 2024 - May 2025",
         bullets: [
           "Part of a team creating the first functioning micro turbojet engine fully developed from scratch by undergraduate students",
           "Engine achieved sustained combustion during testing and has a theoretical thrust of 140N and thrust to weight ratio of 3.5",
@@ -215,8 +214,8 @@ const PortfolioConfig = {
       ],
       modal: {
         badgeAccent: "Mechanical Design",
-        location: "MEAM Department Highlight",
-        period: "Completed 2024",
+        location: "MEAM 2010 Project",
+        period: "January 2024 - May 2024",
         bullets: [
           "Designed and fabricated a stirling heat engine with a Deadpool inspired design from scratch using Prototrak mill, lathe, bandsaw, and CNC operations for metal machining",
           "Modeled and assembled all parts in SolidWorks with mates to replicate final engine movements",
@@ -238,8 +237,8 @@ const PortfolioConfig = {
       ],
       modal: {
         badgeAccent: "Aerodynamics & CFD",
-        location: "Penn Fluids Simulation",
-        period: "2024 - 2025",
+        location: "MEAM 2030 Project (Team of 4)",
+        period: "November 2025 - December 2025",
         bullets: [
           "Modeled fluid flow over different shapes using COMSOL in both 2D and 3D in order to calculate the drag coefficient of different shapes",
           "Simulation is planned to be used to optimize cars, planes, and more projects for different clubs at Penn in the future"

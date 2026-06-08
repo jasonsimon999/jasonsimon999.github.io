@@ -14,8 +14,9 @@
        ========================================== -->
   <header class="navbar">
     <div class="nav-container">
-      <a href="#" class="logo" id="nav-logo">
-        JASON SIMON<span class="logo-dot"></span>
+      <a href="#" class="logo-container" id="nav-logo">
+        <div class="logo">JASON SIMON<span class="logo-dot"></span></div>
+        <div class="logo-subtitle">Intern @ Shield AI | Prev. @ SpaceX, NASA, Boeing | MS + BSE @ UPENN</div>
       </a>
       <nav class="nav-links">
         <a href="#hero" class="active">Home</a>
@@ -32,34 +33,67 @@
   <section id="hero" class="hero">
     <canvas id="hero-canvas"></canvas>
     <div class="hero-content">
-      <div class="hero-meta" id="hero-tagline">
-        <!-- Dyn. Populated -->
-      </div>
-      <h1 class="hero-title" id="hero-title">
-        <!-- Dyn. Populated -->
-      </h1>
-      <p class="hero-subtitle" id="hero-desc">
-        <!-- Dyn. Populated -->
-      </p>
-      
-      <!-- Academic Credentials Target -->
-      <div class="hero-stats" id="hero-stats">
-        <!-- Dyn. Populated -->
-      </div>
+      <div class="hero-grid">
+        
+        <!-- Left Side: Copy and Details -->
+        <div class="hero-left">
+          <!-- Tagline removed as requested -->
+          <h1 class="hero-title" id="hero-title">
+            <!-- Dyn. Populated -->
+          </h1>
+          <div class="hero-desc-container" id="hero-desc">
+            <!-- Dyn. Populated -->
+          </div>
+          
+          <!-- Academic Credentials Target -->
+          <div class="hero-stats" id="hero-stats">
+            <!-- Dyn. Populated -->
+          </div>
 
-      <!-- Contact Information Strip Target -->
-      <div class="hero-contact-strip" id="hero-contact-strip">
-        <!-- Dyn. Populated -->
-      </div>
+          <!-- Contact Information Strip Target -->
+          <div class="hero-contact-strip" id="hero-contact-strip">
+            <!-- Dyn. Populated -->
+          </div>
 
-      <div class="hero-buttons">
-        <a href="#projects" class="btn btn-primary">
-          Explore Projects
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
-          </svg>
-        </a>
-        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+          <div class="hero-buttons">
+            <a href="#experience" class="btn btn-primary">
+              Explore Experiences
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+              </svg>
+            </a>
+            <a href="#projects" class="btn btn-primary">
+              Explore Projects
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+              </svg>
+            </a>
+            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+          </div>
+        </div>
+
+        <!-- Right Side: Graphic scanner frame (Profile/BB-8 image) -->
+        <div class="hero-right">
+          <div class="hero-scanner-frame">
+            <div class="scanner-bar"></div>
+            
+            <!-- PROFILE IMAGE (Active) -->
+            <img src="images/Personal image 1.png" alt="Jason Simon" class="hero-scanner-img">
+            
+            <!-- BB-8 IMAGE (Uncomment below and comment out profile image above to switch back) -->
+            <!-- <img src="images/BB8 image 1.jpeg" alt="BB-8 Droid Project Model" class="hero-scanner-img"> -->
+            
+            <div class="scanner-corner tl"></div>
+            <div class="scanner-corner tr"></div>
+            <div class="scanner-corner bl"></div>
+            <div class="scanner-corner br"></div>
+            
+            <!-- Scanner Tags -->
+            <div class="scanner-tag">TARGET_USER: ACQUISITION_OK</div>
+            <!-- <div class="scanner-tag">TARGET_BB8: ACQUISITION_OK</div> -->
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -69,7 +103,6 @@
        ========================================== -->
   <section id="experience" class="container">
     <h2 class="section-title">Professional Experience</h2>
-    <p class="section-subtitle">Delivering high-value systems design and manufacturing scaling for aerospace, robotics, and defense leaders.</p>
     
     <!-- Experience Timeline Target -->
     <div class="timeline-wrapper" id="experience-timeline">
@@ -82,7 +115,6 @@
        ========================================== -->
   <section id="projects" class="container">
     <h2 class="section-title">Featured Projects</h2>
-    <p class="section-subtitle">Technical blueprints, physical implementations, and CAD animations demonstrating mechatronics, structures, controls, and fluids.</p>
     
     <!-- Projects Grid Target -->
     <div class="projects-grid" id="projects-grid">
@@ -102,20 +134,23 @@
           <!-- Dyn. Populated -->
         </div>
 
-        <!-- Contact Form Column -->
+        <!-- Contact Form Column: FormSubmit Integration -->
         <div>
-          <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully!'); this.reset();">
+          <form class="contact-form" action="https://formsubmit.co/jasonsimon343@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New Portfolio Message!">
+            <input type="hidden" name="_captcha" value="false">
+            
             <div class="form-group">
               <label for="form-name">Name</label>
-              <input type="text" id="form-name" class="form-input" placeholder="Your Name" required>
+              <input type="text" id="form-name" name="name" class="form-input" placeholder="Your Name" required>
             </div>
             <div class="form-group">
               <label for="form-email">Email</label>
-              <input type="email" id="form-email" class="form-input" placeholder="your.email@domain.com" required>
+              <input type="email" id="form-email" name="email" class="form-input" placeholder="your.email@domain.com" required>
             </div>
             <div class="form-group">
               <label for="form-msg">Message</label>
-              <textarea id="form-msg" class="form-input" rows="4" placeholder="Describe your project or opportunity..." required></textarea>
+              <textarea id="form-msg" name="message" class="form-input" rows="4" placeholder="Write your message here..." required></textarea>
             </div>
             <button type="submit" class="btn btn-primary" style="width: max-content; align-self: flex-start;">Send Message</button>
           </form>
@@ -134,6 +169,11 @@
       </div>
     </div>
   </footer>
+
+  <!-- Floating Coding Animation Widget in Bottom Corner -->
+  <div class="telemetry-widget">
+    <canvas id="telemetry-radar" width="100" height="100"></canvas>
+  </div>
 
   <!-- Container for Auto-Generated Modals -->
   <div id="modals-container"></div>

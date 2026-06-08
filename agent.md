@@ -29,6 +29,11 @@ A junior at the University of Pennsylvania studying Mechanical Engineering. Inte
 
 ## 2. Professional Work Experience
 
+### Shield AI
+**Position:** Engineering Intern  
+**Location / Timeline:** June 2026 – Present  
+* **Work Scope:** Currently interning at Shield AI, working on the development of the XBat autonomous drone.
+
 ### SpaceX
 **Position:** Starlink PCB Production Engineering Intern  
 **Location / Timeline:** Bastrop, TX | *May 2025 – August 2025*

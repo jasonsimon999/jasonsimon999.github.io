@@ -3,7 +3,6 @@
    ========================================== */
 function resolveMediaPath(src) {
   const folder = PortfolioConfig.mediaFolder || '';
-  // If it's already an external link or data URI, return as-is
   if (src.startsWith('http') || src.startsWith('data:')) {
     return src;
   }
@@ -61,14 +60,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const profile = PortfolioConfig.profile;
 
   // 1. Populate Hero Content
-  document.getElementById('hero-tagline').innerHTML = `<span class="hero-meta-pulse"></span>${profile.tagline}`;
+  // Tagline has been removed as requested:
+  // document.getElementById('hero-tagline').innerHTML = `<span class="hero-meta-pulse"></span>${profile.tagline}`;
   
-  // Format title to color highlight the last words or "Hardware & Autonomous Systems"
+  // Format title to color highlight "Aerospace Portfolio" or last words
   let formattedTitle = profile.title;
   if (profile.title.includes("Systems, Robotics & Aerospace")) {
     formattedTitle = profile.title.replace("Systems, Robotics & Aerospace Portfolio", `Systems, Robotics & <span>Aerospace Portfolio</span>`);
   } else {
-    // Fallback: wrap last 2 words
     const words = profile.title.split(" ");
     if (words.length > 2) {
       const lastWords = words.slice(-2).join(" ");
@@ -76,7 +75,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   document.getElementById('hero-title').innerHTML = formattedTitle;
-  document.getElementById('hero-desc').innerText = profile.description;
+
+  // Split profile description into separate lines for each sentence (splitting by newline)
+  const sentences = profile.description.split('\n').map(s => s.trim());
+  const formattedDesc = sentences
+    .filter(s => s.length > 0)
+    .map(s => `<li>${s}</li>`)
+    .join('');
+  document.getElementById('hero-desc').innerHTML = `<ul class="hero-bullets">${formattedDesc}</ul>`;
 
   // Render Hero Stats (Education)
   const statsContainer = document.getElementById('hero-stats');
@@ -162,7 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
     card.className = "project-card glass-panel";
     card.setAttribute('onclick', `openModal('modal-${project.id}')`);
 
-    // Get first image as card thumbnail cover
     const firstImage = project.media.find(m => m.type === 'image');
     const imagePath = firstImage ? resolveMediaPath(firstImage.src) : '';
     const imageElement = imagePath 
@@ -191,7 +196,6 @@ document.addEventListener("DOMContentLoaded", () => {
     dialog.className = "project-modal";
     dialog.id = `modal-${project.id}`;
 
-    // Generate thumbnails preview list
     const thumbnailsHtml = project.media.map((media, idx) => {
       if (media.type === 'video') {
         return `
@@ -224,17 +228,13 @@ document.addEventListener("DOMContentLoaded", () => {
         </button>
       </div>
       <div class="modal-content">
-        <!-- Media Gallery Component -->
         <div class="modal-section" style="margin-bottom: 25px;">
-          <div class="modal-media-main" id="media-main-${project.id}">
-            <!-- Initialized with media[0] -->
-          </div>
+          <div class="modal-media-main" id="media-main-${project.id}"></div>
           <div class="modal-media-thumbnails" id="thumbs-${project.id}">
             ${thumbnailsHtml}
           </div>
         </div>
 
-        <!-- Dynamic Bullet Descriptions (matches PDF style) -->
         <div class="modal-section">
           <h4 class="modal-section-title">Project Details</h4>
           <ul class="modal-bullet-list">
@@ -245,12 +245,10 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     modalsContainer.appendChild(dialog);
     
-    // Initialize modal with first media item
     setTimeout(() => {
       switchModalMedia(project.id, 0);
     }, 50);
 
-    // Bind click closing listener on newly added dialog elements
     dialog.addEventListener('click', (e) => {
       const rect = dialog.getBoundingClientRect();
       const isInDialog = (
@@ -273,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const footerInfoCol = document.getElementById('footer-info-col');
   footerInfoCol.innerHTML = `
     <h3 class="footer-logo">JASON <span>SIMON</span></h3>
-    <p class="footer-desc">${profile.description}</p>
+    <p class="footer-desc">${profile.description.split('\n').map(s => s.trim()).join('. ') + '.'}</p>
     <div class="footer-contact-details">
       <div class="footer-contact-item">
         <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -297,12 +295,10 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   `;
 
-  // Copyright details
   document.getElementById('footer-copyright').innerHTML = `
-    &copy; 2026 ${profile.name}. Built with dynamic Semantic HTML, CSS Grid, and Canvas.
+    &copy; 2026 ${profile.name}. Built with dynamic Semantic HTML, CSS Grid, and Canvas. Created with the help of the Antigravity AI Agent.
   `;
 
-  // Socials block
   document.getElementById('footer-socials').innerHTML = `
     <a href="${profile.linkedin}" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn Profile">
       <svg viewBox="0 0 24 24"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
@@ -322,7 +318,6 @@ const ctx = canvas.getContext('2d');
 let width = canvas.width = window.innerWidth;
 let height = canvas.height = window.innerHeight;
 
-// Mouse coordinates tracker
 const mouse = {
   x: null,
   y: null,
@@ -331,7 +326,7 @@ const mouse = {
 
 window.addEventListener('mousemove', (e) => {
   mouse.x = e.clientX;
-  mouse.y = e.clientY + window.scrollY; // adjust for scroll position if page scrolled
+  mouse.y = e.clientY + window.scrollY;
 });
 
 window.addEventListener('mouseout', () => {
@@ -339,18 +334,16 @@ window.addEventListener('mouseout', () => {
   mouse.y = null;
 });
 
-// Update dimensions on resize
 window.addEventListener('resize', () => {
   width = canvas.width = window.innerWidth;
   height = canvas.height = window.innerHeight;
 });
 
-// Particle Class
 class Particle {
   constructor() {
     this.x = Math.random() * width;
     this.y = Math.random() * height;
-    this.vx = (Math.random() - 0.5) * 0.6; // slow, smooth drift
+    this.vx = (Math.random() - 0.5) * 0.6;
     this.vy = (Math.random() - 0.5) * 0.6;
     this.baseRadius = Math.random() * 2 + 1;
     this.radius = this.baseRadius;
@@ -363,7 +356,6 @@ class Particle {
     ctx.fillStyle = this.color;
     ctx.fill();
     
-    // Draw minor technical coordinates labels for a select few particles to look high-tech
     if (this.baseRadius > 2.5 && mouse.x !== null) {
       const dist = Math.hypot(this.x - mouse.x, this.y - mouse.y);
       if (dist < mouse.radius) {
@@ -375,21 +367,18 @@ class Particle {
   }
 
   update() {
-    // Wall bounce
     if (this.x < 0 || this.x > width) this.vx = -this.vx;
     if (this.y < 0 || this.y > height) this.vy = -this.vy;
 
     this.x += this.vx;
     this.y += this.vy;
 
-    // Mouse attraction / interaction
     if (mouse.x !== null && mouse.y !== null) {
       const dx = this.x - mouse.x;
       const dy = this.y - mouse.y;
       const dist = Math.hypot(dx, dy);
       
       if (dist < mouse.radius) {
-        // Subtle magnetic pull
         const force = (mouse.radius - dist) / mouse.radius;
         const angle = Math.atan2(dy, dx);
         this.x -= Math.cos(angle) * force * 0.8;
@@ -404,87 +393,221 @@ class Particle {
   }
 }
 
-// Instantiate particles
 const particleCount = PortfolioConfig.theme && PortfolioConfig.theme.particlesCount 
   ? PortfolioConfig.theme.particlesCount 
   : 75;
 const particles = Array.from({ length: particleCount }, () => new Particle());
 
-// Render Loop
 function animate() {
   ctx.clearRect(0, 0, width, height);
 
   if (PortfolioConfig.theme && !PortfolioConfig.theme.enableParticles) return;
 
-  // Draw static technical gridlines in background
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.015)';
-  ctx.lineWidth = 0.5;
-  const gridSize = 80;
-  for (let x = 0; x < width; x += gridSize) {
-    ctx.beginPath();
-    ctx.moveTo(x, 0);
-    ctx.lineTo(x, height);
-    ctx.stroke();
-  }
-  for (let y = 0; y < height; y += gridSize) {
-    ctx.beginPath();
-    ctx.moveTo(0, y);
-    ctx.lineTo(width, y);
-    ctx.stroke();
-  }
-
-  // Draw sensor connection paths (network lines)
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
-      const dist = Math.hypot(dx, dy);
-
-      if (dist < 120) {
-        const opacity = (120 - dist) / 120 * 0.18;
-        ctx.strokeStyle = `rgba(0, 210, 255, ${opacity})`;
-        ctx.lineWidth = 0.5;
-        ctx.beginPath();
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.stroke();
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.015)';
+    ctx.lineWidth = 0.5;
+    const gridSize = 80;
+    for (let x = 0; x < width; x += gridSize) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, height);
+      ctx.stroke();
+    }
+    for (let y = 0; y < height; y += gridSize) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(width, y);
+      ctx.stroke();
+    }
+  
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.hypot(dx, dy);
+  
+        if (dist < 120) {
+          const opacity = (120 - dist) / 120 * 0.18;
+          ctx.strokeStyle = `rgba(0, 210, 255, ${opacity})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
       }
     }
-  }
-
-  // Update and draw particles
-  particles.forEach(p => {
-    p.update();
-    p.draw();
-  });
-
-  // Cursor overlay data
-  if (mouse.x !== null && mouse.y !== null) {
-    ctx.beginPath();
-    ctx.arc(mouse.x, mouse.y, 4, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(0, 210, 255, 0.9)';
-    ctx.fill();
-
-    // Dotted radar boundary
-    ctx.strokeStyle = 'rgba(0, 210, 255, 0.12)';
-    ctx.lineWidth = 1;
-    ctx.setLineDash([4, 4]);
-    ctx.beginPath();
-    ctx.arc(mouse.x, mouse.y, mouse.radius, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.setLineDash([]);
-
-    // Telemetry label next to cursor
-    ctx.font = '8px JetBrains Mono, monospace';
-    ctx.fillStyle = '#00d2ff';
-    ctx.fillText(`FUSION_RAD: 150m | TRACKING [X: ${Math.round(mouse.x)} Y: ${Math.round(mouse.y)}]`, mouse.x + 15, mouse.y + 5);
-  }
+  
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+  
+    if (mouse.x !== null && mouse.y !== null) {
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0, 210, 255, 0.9)';
+      ctx.fill();
+  
+      ctx.strokeStyle = 'rgba(0, 210, 255, 0.12)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, mouse.radius, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+  
+      ctx.font = '8px JetBrains Mono, monospace';
+      ctx.fillStyle = '#00d2ff';
+      ctx.fillText(`FUSION_RAD: 150m | TRACKING [X: ${Math.round(mouse.x)} Y: ${Math.round(mouse.y)}]`, mouse.x + 15, mouse.y + 5);
+    }
 
   requestAnimationFrame(animate);
 }
 
 if (PortfolioConfig.theme && PortfolioConfig.theme.enableParticles) {
   animate();
+}
+
+/* ==========================================
+   FLOATING RADAR SCANNER WIDGET ANIMATION
+   ========================================== */
+const radarCanvas = document.getElementById('telemetry-radar');
+if (radarCanvas) {
+  const rCtx = radarCanvas.getContext('2d');
+  const rRadius = radarCanvas.width / 2;
+  let sweepAngle = 0;
+  let compassAngle = 0;
+  
+  // Tracked dynamic target points (radar blips)
+  const blips = [
+    { rx: 0.3, ry: -0.4, intensity: 0, dx: 0.001, dy: -0.0015 },
+    { rx: -0.5, ry: 0.3, intensity: 0, dx: -0.0015, dy: 0.001 },
+    { rx: 0.5, ry: 0.45, intensity: 0, dx: 0.0012, dy: 0.0012 }
+  ];
+
+  function drawRadar() {
+    rCtx.clearRect(0, 0, radarCanvas.width, radarCanvas.height);
+    
+    // 1. Draw outer static compass ticks (circle itself doesn't spin)
+    rCtx.save();
+    rCtx.translate(rRadius, rRadius);
+    rCtx.strokeStyle = 'rgba(0, 210, 255, 0.22)';
+    rCtx.lineWidth = 1;
+    for (let i = 0; i < 360; i += 15) {
+      rCtx.beginPath();
+      // Longer ticks every 45 degrees
+      const tickLength = (i % 45 === 0) ? 6 : 3;
+      rCtx.moveTo(0, rRadius - 4 - tickLength);
+      rCtx.lineTo(0, rRadius - 4);
+      rCtx.stroke();
+      rCtx.rotate(15 * Math.PI / 180);
+    }
+    rCtx.restore();
+
+    // 2. Draw static background grid rings
+    rCtx.strokeStyle = 'rgba(0, 210, 255, 0.12)';
+    rCtx.lineWidth = 0.75;
+    
+    rCtx.beginPath();
+    rCtx.arc(rRadius, rRadius, rRadius - 4, 0, Math.PI * 2);
+    rCtx.stroke();
+
+    rCtx.beginPath();
+    rCtx.arc(rRadius, rRadius, (rRadius - 4) * 0.66, 0, Math.PI * 2);
+    rCtx.stroke();
+
+    rCtx.beginPath();
+    rCtx.arc(rRadius, rRadius, (rRadius - 4) * 0.33, 0, Math.PI * 2);
+    rCtx.stroke();
+    
+    // Cross lines
+    rCtx.beginPath();
+    rCtx.moveTo(4, rRadius);
+    rCtx.lineTo(radarCanvas.width - 4, rRadius);
+    rCtx.moveTo(rRadius, 4);
+    rCtx.lineTo(rRadius, radarCanvas.height - 4);
+    rCtx.stroke();
+    
+    // 3. Draw sweep beams (gradient wedge trailing trail)
+    const trailSegments = 25;
+    for (let i = 0; i < trailSegments; i++) {
+      const angle = sweepAngle - (i * 0.025);
+      const alpha = (trailSegments - i) / trailSegments * 0.35;
+      rCtx.strokeStyle = `rgba(0, 210, 255, ${alpha})`;
+      rCtx.lineWidth = i === 0 ? 1.5 : 0.8;
+      
+      rCtx.beginPath();
+      rCtx.moveTo(rRadius, rRadius);
+      rCtx.lineTo(
+        rRadius + Math.cos(angle) * (rRadius - 10),
+        rRadius + Math.sin(angle) * (rRadius - 10)
+      );
+      rCtx.stroke();
+    }
+    
+    // Advance main sweep angle
+    sweepAngle += 0.025;
+    if (sweepAngle > Math.PI * 2) sweepAngle = 0;
+    
+    // 4. Update and draw dynamic blips
+    blips.forEach(b => {
+      // Simulate target drift
+      b.rx += b.dx;
+      b.ry += b.dy;
+      
+      // Keep target within boundaries
+      const dist = Math.hypot(b.rx, b.ry);
+      if (dist > 0.8 || dist < 0.2) {
+        b.dx = -b.dx;
+        b.dy = -b.dy;
+      }
+      
+      const absoluteX = rRadius + b.rx * (rRadius - 15);
+      const absoluteY = rRadius + b.ry * (rRadius - 15);
+      
+      // Calculate angle of target relative to center
+      let targetAngle = Math.atan2(b.ry, b.rx);
+      if (targetAngle < 0) targetAngle += Math.PI * 2;
+      
+      // Illuminate target as the sweep line passes
+      const angleDiff = Math.abs(sweepAngle - targetAngle);
+      if (angleDiff < 0.08) {
+        b.intensity = 1.0;
+      } else {
+        b.intensity = Math.max(0, b.intensity - 0.008); // Slow fade
+      }
+      
+      if (b.intensity > 0) {
+        // Blip core
+        rCtx.beginPath();
+        rCtx.arc(absoluteX, absoluteY, 2, 0, Math.PI * 2);
+        rCtx.fillStyle = `rgba(0, 210, 255, ${b.intensity})`;
+        rCtx.fill();
+        
+        // Halo pulse
+        rCtx.beginPath();
+        rCtx.arc(absoluteX, absoluteY, 5 * b.intensity, 0, Math.PI * 2);
+        rCtx.fillStyle = `rgba(0, 210, 255, ${b.intensity * 0.25})`;
+        rCtx.fill();
+        
+        // Track designation text
+        if (b.intensity > 0.5) {
+          rCtx.font = '5px monospace';
+          rCtx.fillStyle = `rgba(0, 210, 255, ${b.intensity})`;
+          rCtx.fillText('TRK', absoluteX + 5, absoluteY - 3);
+        }
+      }
+    });
+
+    // 5. Draw digital status overlay text
+    rCtx.font = '5px monospace';
+    rCtx.fillStyle = 'rgba(0, 210, 255, 0.45)';
+    rCtx.fillText('SYS:OK', 8, rRadius * 2 - 8);
+    rCtx.fillText('AGY:ACT', rRadius * 2 - 28, rRadius * 2 - 8);
+
+    requestAnimationFrame(drawRadar);
+  }
+  drawRadar();
 }
 
 /* ==========================================
@@ -503,15 +626,13 @@ function closeModal(id) {
   const modal = document.getElementById(id);
   if (modal) {
     modal.classList.remove('open');
-    // Stop all playing videos inside the modal when closing
     const videos = modal.querySelectorAll('video');
     videos.forEach(v => v.pause());
 
-    // Allow animation to finish before calling native close
     setTimeout(() => {
       modal.close();
       document.body.style.overflow = '';
-    }, 250); // Matches CSS transition duration
+    }, 250);
   }
 }
 
@@ -523,7 +644,7 @@ const navItems = document.querySelectorAll('.nav-links a');
 
 window.addEventListener('scroll', () => {
   let currentSec = '';
-  const scrollPos = window.scrollY + 100; // offset for nav header height
+  const scrollPos = window.scrollY + 100;
 
   sections.forEach(section => {
     const sectionTop = section.offsetTop;
