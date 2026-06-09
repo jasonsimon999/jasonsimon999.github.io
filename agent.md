@@ -1,5 +1,5 @@
 # Developer Profile & Portfolio Agent Context
-**Author:** Jason Trevor Simon  
+**Author:** Jason Simon  
 **Contact:** Orange, CA 92867 | jasonsimon343@gmail.com | www.linkedin.com/in/jason-simon3  
 **Target Output:** Personal Portfolio Website Configuration & Content  
 **Last Updated:** June 2026  
