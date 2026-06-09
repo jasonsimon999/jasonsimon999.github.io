@@ -21,7 +21,7 @@ const PortfolioConfig = {
   // --- PROFILE & HERO SECTION ---
   profile: {
     name: "Jason Simon",
-    // tagline: "Building autonomous systems and AI Hardware. Feel free to reach out!",
+    // tagline: "Building autonomous systems and Physical AI. Feel free to reach out!",
     title: "Jason Simon | Building Autonomous Systems and Physical AI",
     description: "Currently interning at Shield AI working on development of the X-Bat autonomous drone \n Past experience ranges from engineering automation cells at SpaceX to building collaborative lunar mechanisms for NASA \n Interested in artificial intelligence, robotics, aerospace, entrepreneurship, and investing",
     location: "Home: SoCal | School: Philly",
@@ -46,7 +46,7 @@ const PortfolioConfig = {
       period: "May 2025 – August 2025",
       metrics: [
         { value: "$5.5M", label: "Annual Savings" },
-        { value: "> 2x", label: "Capacity Increase" },
+        { value: "2x", label: "Capacity Increase" },
         { value: "+21%", label: "PCB Panel Yield" }
       ],
       bulletPoints: [
@@ -105,7 +105,7 @@ const PortfolioConfig = {
     {
       id: "bb8",
       title: "Star Wars BB-8 Droid",
-      shortDescription: "A fully functional, radio-controlled BB-8 replica featuring a custom pendulum drive chassis and floating magnetic head tracking.",
+      shortDescription: "A fully functional, radio-controlled BB-8 replica made in one month on a $200 budget.",
       tech: ["Mechanical Design", "Mechatronics", "ESP32-S2 / C3"],
       category: "robotics",
       media: [
@@ -119,11 +119,10 @@ const PortfolioConfig = {
         location: "Independent Project (Team of 10)",
         period: "April 2026 - May 2026",
         bullets: [
-          "Designed and fabricated a fully functional, radio-controlled Star Wars BB-8 replica droid from scratch featuring a 16.125-inch outer diameter hollow body for less than $200",
-          "Engineered an active, stabilized floating head mechanism using three high-grade Neodymium magnets and omnidirectional ball bearing casters to counteract physical magnetic forces during rotation",
-          "Built a custom internal pendulum drive chassis housing motor mounts, batteries, and controllers that remain vertically stabilized by gravity as the sphere rotates around it",
-          "Programmed dual microcontroller logic with an ESP32-S2 for locomotion torque ramps and an ESP32-C3 for wireless live MJPEG video telemetry to an HTML dashboard",
-          "Conducted FEA structural analysis on the central aluminum shaft to verify a 18.6 factor of safety and optimized flywheel torque geometry to overcome static friction"
+          "Led team of 10 in design and fabrication of a fully functional, radio-controlled Star Wars BB-8 replica droid featuring a 16-inch diameter body on a one month timeline and $200 budget",
+          "Built a custom, 3D printed internal pendulum drive chassis that houses all the electronics and supports the floating head while remaining vertically stabilized by gravity as the sphere rotates around it",
+          "Programmed dual microcontroller logic with an ESP32-S2 for locomotion torque ramps and an ESP32-C3 for wireless live MJPEG video telemetry",
+          "Calculated internal counter-torque required to smoothly spin the sphere and conducted structural finite element analysis on all internal shafts to ensure operational alignment"
         ]
       }
     },
@@ -144,11 +143,10 @@ const PortfolioConfig = {
         location: "Meam 5100 Project (Team of 3)",
         period: "April 2026 - May 2026",
         bullets: [
-          "Designed, built, and programmed an autonomous combat vehicle to navigate unstructured fields, avoid obstacles, and capture target milestones under zero-latency network restrictions",
-          "Soldered a vertical three-tier perfboard PCB tower to route command signals, isolate low-voltage sensor inputs, and prevent high-current motor EMI brownouts",
-          "Implemented real-time sensor fusion combining dead-reckoning encoder odometry, VL53L0X Time-of-Flight sensors, and Vive photodiode bilinear localization transforms",
-          "Programmed concurrent time-sliced control loops and finite state machine (FSM) logic in C++ on an ESP32-S2 for pathfinding and wall-following subroutines",
-          "Secured the 3rd overall tournament seed and achieved 63 out of 66 points in department performance evaluations"
+          "Designed, built, and programmed an autonomous combat vehicle to navigate dynamic playing fields, avoid obstacles, and capture target milestones",
+          "Soldered a vertical three-tier perfboard PCB tower to efficiently route electronics to a ESP32-S2, isolate low-voltage sensor inputs, and limit sensor noise",
+          "Implemented real-time sensor fusion combining dead-reckoning encoder odometry, VL53L0X Time-of-Flight sensors, and Vive photodiode bilinear localization",
+          "Received the 2nd highest score in department performance evaluations"
         ]
       }
     },
@@ -169,10 +167,10 @@ const PortfolioConfig = {
         location: "MEAM 4150 Project (team of 4)",
         period: "April 2026 - May 2026",
         bullets: [
-          "Designed and fabricated a wearable athletic running safety belt to detect rear-approaching vehicles and alert the runner via localized waist haptics",
-          "Developed C++ firmware on an ultra-compact ESP32-C3 (M5Stamp Core) to sample long-range Time-of-Flight (TOF4M) distance data independent of lighting conditions",
-          "Implemented a moving-average data filter to smooth out vertical running oscillation noise and trigger proportional haptic vibration sequences when a threat enters the 1.5m perimeter",
-          "3D-printed a compact, water-resistant enclosure with integrated belt loops, keeping the belt low-profile and eliminating bounce during high-velocity running"
+          "Designed and fabricated a lightweight running safety belt to detect rear-approaching threats and alert the runner via localized waist haptics",
+          "Developed C++ firmware on an ultra-compact ESP32-C3 (M5Stamp Core) to sample long-range Time-of-Flight distance data independent of ambient light conditions",
+          "Implemented a relative velocity calculation and moving-average data filter to smooth out vertical running oscillation noise and trigger proportional haptic vibration based on the calculated time to collision for the threat",
+          "3D-printed a compact, water-resistant enclosure with integrated belt mounting, keeping the belt low-profile and eliminating bounce during running"
         ]
       }
     },
