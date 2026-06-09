@@ -22,7 +22,7 @@ const PortfolioConfig = {
   profile: {
     name: "Jason Simon",
     // tagline: "Building autonomous systems and AI Hardware. Feel free to reach out!",
-    title: "Jason Simon | Building Autonomous Systems and AI Hardware",
+    title: "Jason Simon | Building Autonomous Systems and Physical AI",
     description: "Currently interning at Shield AI working on development of the X-Bat autonomous drone \n Past experience ranges from engineering automation cells at SpaceX to building collaborative lunar mechanisms for NASA \n Interested in artificial intelligence, robotics, aerospace, entrepreneurship, and investing",
     location: "Home: SoCal | School: Philly",
     email: "jasonsimon343@gmail.com",
