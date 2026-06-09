@@ -144,7 +144,7 @@ const PortfolioConfig = {
         period: "April 2026 - May 2026",
         bullets: [
           "Designed, built, and programmed an autonomous combat vehicle to navigate dynamic playing fields, avoid obstacles, and capture target milestones",
-          "Soldered a vertical three-tier perfboard PCB tower to efficiently route electronics to a ESP32-S2, isolate low-voltage sensor inputs, and limit sensor noise",
+          "Soldered a vertical three-tier perfboard PCB tower to efficiently route electronics to an ESP32-S2, isolate low-voltage sensor inputs, and limit sensor noise",
           "Implemented real-time sensor fusion combining dead-reckoning encoder odometry, VL53L0X Time-of-Flight sensors, and Vive photodiode bilinear localization",
           "Received the 2nd highest score in department performance evaluations"
         ]
