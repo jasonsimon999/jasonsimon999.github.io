@@ -2,7 +2,7 @@
  * ==========================================
  * PORTFOLIO CONFIGURATION SOURCE OF TRUTH
  * ==========================================
- * Central configuration file for Jason Trevor Simon's portfolio.
+ * Central configuration file for Jason Simon's portfolio.
  */
 const PortfolioConfig = {
   // --- MEDIA DIRECTORY SETTING ---
