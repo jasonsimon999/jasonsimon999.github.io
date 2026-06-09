@@ -183,7 +183,6 @@ const PortfolioConfig = {
       media: [
         { type: "image", src: "Jet Engine image 1.png" },
         { type: "image", src: "Jet Engine image 2.png" },
-        { type: "image", src: "Jet Engine image 3.png" },
         { type: "image", src: "Jet Engine image 4.png" }
       ],
       modal: {
@@ -193,8 +192,7 @@ const PortfolioConfig = {
         bullets: [
           "Part of a team creating the first functioning micro turbojet engine fully developed from scratch by undergraduate students",
           "Engine achieved sustained combustion during testing and has a thrust of 140N and thrust to weight ratio of 3.5",
-          "Designed in SolidWorks and manufactured using a ProtoTrak mill and lathe a new mount to hold the engine securely during future testing",
-          "Worked with 2 other students to design the combustion chamber and plan out the overarching integration and interfacing of all the subsystems"
+          "Designed in SolidWorks and manufactured using a ProtoTrak mill and lathe a new mount to hold the engine securely during future testing"
         ]
       }
     },
@@ -237,8 +235,9 @@ const PortfolioConfig = {
         location: "MEAM 2030 Project (Team of 4)",
         period: "November 2025 - December 2025",
         bullets: [
-          "Modeled fluid flow over different shapes using COMSOL in both 2D and 3D in order to calculate the drag coefficient of different shapes",
-          "Simulation is planned to be used to optimize cars, planes, and more projects for different clubs at Penn in the future"
+          "Developed 2D and 3D CFD simulations in COMSOL Multiphysics to characterize flow fields, boundary layer development, and aerodynamic drag across multiple geometries",
+          "Generated velocity, pressure, and streamline visualizations to identify flow separation regions and quantify drag coefficient variations between designs",
+          "Established a reusable CFD workflow that can be applied to future aerospace, automotive, and robotics design projects requiring aerodynamic optimization"
         ]
       }
     }
