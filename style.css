@@ -282,6 +282,46 @@ section:hover .section-title::after {
   width: 100%;
 }
 
+/* Mobile menu toggle button */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 32px;
+  height: 24px;
+  position: relative;
+  z-index: 110;
+  padding: 0;
+}
+
+.hamburger-line {
+  position: absolute;
+  left: 5px;
+  width: 22px;
+  height: 2px;
+  background-color: var(--text-primary);
+  transition: all var(--transition-normal);
+  border-radius: 1px;
+}
+
+.hamburger-line:nth-child(1) { top: 5px; }
+.hamburger-line:nth-child(2) { top: 11px; }
+.hamburger-line:nth-child(3) { top: 17px; }
+
+.nav-toggle.open .hamburger-line:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+  background-color: var(--accent-cyan);
+}
+.nav-toggle.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+.nav-toggle.open .hamburger-line:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+  background-color: var(--accent-cyan);
+}
+
 /* ==========================================
    Hero Section & Canvas (Split Column)
    ========================================== */
@@ -717,7 +757,7 @@ section:hover .section-title::after {
    ========================================== */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
   gap: 30px;
   margin-top: 20px;
 }
@@ -749,6 +789,10 @@ section:hover .section-title::after {
   height: 100%;
   object-fit: cover;
   transition: var(--transition-normal);
+}
+
+.project-card-bb8 .project-blueprint img {
+  object-position: center 35%; /* Middle ground to show both BB-8's head and body clearly without cropping either too much */
 }
 
 .project-card:hover .project-blueprint img {
@@ -1150,7 +1194,7 @@ dialog.project-modal[open]::backdrop {
    ========================================== */
 .modal-media-main {
   width: 100%;
-  height: 380px;
+  height: 420px; /* Increased default height on desktop */
   background: #060912;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-sm);
@@ -1187,7 +1231,8 @@ dialog.project-modal[open]::backdrop {
 .modal-thumbnail {
   width: 75px;
   height: 48px;
-  object-fit: cover;
+  object-fit: contain; /* Prevents cutoff in the vertical direction */
+  background: rgba(0, 0, 0, 0.4); /* Background layer for padded thumbnail boundaries */
   border-radius: 4px;
   border: 2px solid transparent;
   cursor: pointer;
@@ -1250,6 +1295,57 @@ dialog.project-modal[open]::backdrop {
   color: var(--accent-cyan);
 }
 
+/* Gallery Nav Buttons & Wrapper */
+.modal-media-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.gallery-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(12, 14, 20, 0.65);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  z-index: 10;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 0;
+}
+
+.gallery-nav-btn:hover {
+  background: rgba(0, 114, 255, 0.25);
+  border-color: var(--accent-cyan);
+  color: var(--text-bright);
+  box-shadow: 0 0 12px rgba(0, 210, 255, 0.45);
+}
+
+.gallery-nav-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }
+
+/* Mobile line break helper */
+.mobile-br {
+  display: none;
+}
+
+.desktop-pipe {
+  display: inline;
+}
+
 /* ==========================================
    Animations
    ========================================== */
@@ -1274,20 +1370,198 @@ dialog.project-modal[open]::backdrop {
     padding: 120px 0 80px 0;
   }
   .modal-media-main {
-    height: 280px;
+    height: 320px; /* Increased from 280px */
   }
 }
 
 @media (max-width: 768px) {
+  .mobile-br {
+    display: block; /* Force degree tagline to line break on mobile */
+  }
+
+  .desktop-pipe {
+    display: none; /* Hide vertical separator pipe on mobile */
+  }
+
+  .navbar {
+    height: auto; /* Allow navbar to grow with multi-line tagline */
+    min-height: 70px;
+    padding: 8px 0;
+  }
+
+  .logo-container {
+    max-width: calc(100% - 40px); /* Restrict logo container width to prevent overlapping hamburger */
+  }
+
   .section-title {
     font-size: 1.85rem;
   }
-  .nav-links {
-    display: none;
+
+  .logo-subtitle {
+    display: block; /* Show tagline in mobile header */
+    font-size: 0.6rem; /* Fits elegantly on mobile on a single line */
+    white-space: nowrap; /* Prevent auto-wrapping on spaces; break only at the br tag */
+    max-width: 100%; /* Let tagline occupy full width of logo-container */
+    line-height: 1.3;
+    margin-top: 3px;
   }
+  
+  .nav-toggle {
+    display: block; /* Show hamburger button on mobile */
+  }
+  
+  .nav-links {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden off-screen by default */
+    width: 280px;
+    height: 100vh;
+    background: rgba(12, 14, 20, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 1px solid var(--border-color);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    z-index: 105;
+    transition: right var(--transition-normal);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-links.open {
+    right: 0; /* Slide in */
+  }
+
+  .nav-links a {
+    font-size: 1.25rem;
+  }
+
+  .hero-scanner-frame {
+    height: 350px;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .telemetry-widget {
+    display: none; /* Hide on mobile/tablet to avoid overlapping text content */
+  }
+
+  .glass-panel {
+    padding: 20px; /* Reduce padding to maximize reading area on mobile */
+  }
+
+  .container {
+    padding: 40px 0;
+  }
+
   .hero-contact-strip {
     border-radius: var(--border-radius-sm);
     width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* Responsive Project Modals */
+  dialog.project-modal {
+    width: 94%;
+    height: 90vh;
+    max-height: none;
+  }
+  .modal-header {
+    padding: 15px 20px;
+  }
+  .modal-title {
+    font-size: 1.3rem;
+  }
+  .modal-content {
+    padding: 20px;
+  }
+  .modal-section-title {
+    font-size: 1.1rem;
+  }
+  .modal-section p, .modal-bullet-list li {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-contact-strip {
+    flex-direction: column;
+    gap: 12px;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    align-items: flex-start;
+  }
+
+  .modal-media-main {
+    height: 280px; /* Increased from 200px for larger viewing on mobile */
+  }
+
+  .contact-form button[type="submit"] {
+    width: 100% !important;
+    justify-content: center;
+  }
+
+  /* Timeline mobile tweaks */
+  .timeline-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .role-title {
+    font-size: 1.15rem;
+  }
+  
+  .role-duration {
+    align-self: flex-start;
+  }
+  
+  .timeline-metrics {
+    gap: 10px;
+  }
+  
+  .metric-pill {
+    padding: 6px 12px;
+    flex: 1 1 calc(50% - 5px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-stats {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .stat-item {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+}
+
+/* Two-column layout for dialog project modals on desktop */
+@media (min-width: 769px) {
+  .modal-content {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 35px;
+    align-items: start;
   }
 }
 

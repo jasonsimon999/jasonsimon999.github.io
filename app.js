@@ -25,14 +25,14 @@ window.switchModalMedia = function(projectId, mediaIndex) {
   // Render video or image
   if (mediaItem.type === 'video') {
     mainViewport.innerHTML = `
-      <video controls autoplay muted loop style="width: 100%; height: 100%; max-height: 380px; object-fit: contain; border-radius: var(--border-radius-sm);">
+      <video controls autoplay muted loop style="width: 100%; height: 100%; object-fit: contain; border-radius: var(--border-radius-sm);">
         <source src="${resolvedSrc}" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     `;
   } else {
     mainViewport.innerHTML = `
-      <img src="${resolvedSrc}" alt="${project.title}" style="width: 100%; height: 100%; max-height: 380px; object-fit: contain; border-radius: var(--border-radius-sm);">
+      <img src="${resolvedSrc}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: contain; border-radius: var(--border-radius-sm);">
     `;
   }
 
@@ -45,6 +45,33 @@ window.switchModalMedia = function(projectId, mediaIndex) {
       thumb.classList.remove('active');
     }
   });
+};
+
+/* ==========================================
+   DYNAMIC GALLERY NAVIGATOR
+   ========================================== */
+window.navigateModalMedia = function(projectId, direction) {
+  const project = PortfolioConfig.projects.find(p => p.id === projectId);
+  if (!project) return;
+
+  const thumbnails = document.querySelectorAll(`#thumbs-${projectId} .modal-thumbnail`);
+  if (!thumbnails.length) return;
+
+  let activeIndex = 0;
+  thumbnails.forEach((thumb, idx) => {
+    if (thumb.classList.contains('active')) {
+      activeIndex = idx;
+    }
+  });
+
+  let newIndex = activeIndex + direction;
+  if (newIndex < 0) {
+    newIndex = thumbnails.length - 1;
+  } else if (newIndex >= thumbnails.length) {
+    newIndex = 0;
+  }
+
+  window.switchModalMedia(projectId, newIndex);
 };
 
 /* ==========================================
@@ -167,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
   PortfolioConfig.projects.forEach(project => {
     // A. Create Project Card HTML
     const card = document.createElement('div');
-    card.className = "project-card glass-panel";
+    card.className = `project-card glass-panel project-card-${project.id}`;
     card.setAttribute('onclick', `openModal('modal-${project.id}')`);
 
     const firstImage = project.media.find(m => m.type === 'image');
@@ -231,7 +258,15 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
       <div class="modal-content">
         <div class="modal-section" style="margin-bottom: 25px;">
-          <div class="modal-media-main" id="media-main-${project.id}"></div>
+          <div class="modal-media-wrapper">
+            <div class="modal-media-main" id="media-main-${project.id}"></div>
+            <button class="gallery-nav-btn prev-btn" onclick="event.stopPropagation(); navigateModalMedia('${project.id}', -1)" aria-label="Previous image">
+              <svg stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button class="gallery-nav-btn next-btn" onclick="event.stopPropagation(); navigateModalMedia('${project.id}', 1)" aria-label="Next image">
+              <svg stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
           <div class="modal-media-thumbnails" id="thumbs-${project.id}">
             ${thumbnailsHtml}
           </div>
@@ -311,6 +346,41 @@ document.addEventListener("DOMContentLoaded", () => {
       <svg viewBox="0 0 24 24"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
     </a>
   `;
+
+  // 5. Mobile Navigation Menu Toggle
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navToggle.classList.toggle('open');
+      navLinks.classList.toggle('open');
+      if (navLinks.classList.contains('open')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close menu when clicking outside of it
+    document.addEventListener('click', (e) => {
+      if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && e.target !== navToggle) {
+        navToggle.classList.remove('open');
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close menu when clicking on any nav link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('open');
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
 });
 
 /* ==========================================

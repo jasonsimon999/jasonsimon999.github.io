@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <meta name="description" content="Professional portfolio of Jason Simon, Mechanical Engineering student at the University of Pennsylvania. Specializing in AI, robotics, aerospace, and entrepreneurship.">
   <link rel="stylesheet" href="style.css?v=1.0.2">
 </head>
+
 <body>
 
   <!-- ==========================================
@@ -16,7 +18,7 @@
     <div class="nav-container">
       <a href="#" class="logo-container" id="nav-logo">
         <div class="logo">JASON SIMON<span class="logo-dot"></span></div>
-        <div class="logo-subtitle">Intern @ Shield AI | Prev. @ SpaceX, NASA, Boeing | MS + BSE @ UPENN</div>
+        <div class="logo-subtitle">Intern @ Shield AI | Prev. @ SpaceX, NASA, Boeing <span class="desktop-pipe">| </span><br class="mobile-br">MS + BSE @ UPENN</div>
       </a>
       <nav class="nav-links">
         <a href="#hero" class="active">Home</a>
@@ -24,6 +26,12 @@
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
       </nav>
+      <!-- Mobile Navigation Hamburger Button -->
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </header>
 
@@ -34,7 +42,7 @@
     <canvas id="hero-canvas"></canvas>
     <div class="hero-content">
       <div class="hero-grid">
-        
+
         <!-- Left Side: Copy and Details -->
         <div class="hero-left">
           <!-- Tagline removed as requested -->
@@ -44,7 +52,7 @@
           <div class="hero-desc-container" id="hero-desc">
             <!-- Dyn. Populated -->
           </div>
-          
+
           <!-- Academic Credentials Target -->
           <div class="hero-stats" id="hero-stats">
             <!-- Dyn. Populated -->
@@ -76,18 +84,18 @@
         <div class="hero-right">
           <div class="hero-scanner-frame">
             <div class="scanner-bar"></div>
-            
+
             <!-- PROFILE IMAGE (Active) -->
             <img src="images/Personal image 1.png" alt="Jason Simon" class="hero-scanner-img">
-            
+
             <!-- BB-8 IMAGE (Uncomment below and comment out profile image above to switch back) -->
             <!-- <img src="images/BB8 image 1.jpeg" alt="BB-8 Droid Project Model" class="hero-scanner-img"> -->
-            
+
             <div class="scanner-corner tl"></div>
             <div class="scanner-corner tr"></div>
             <div class="scanner-corner bl"></div>
             <div class="scanner-corner br"></div>
-            
+
             <!-- Scanner Tags -->
             <div class="scanner-tag">TARGET_USER: ACQUISITION_OK</div>
             <!-- <div class="scanner-tag">TARGET_BB8: ACQUISITION_OK</div> -->
@@ -103,7 +111,7 @@
        ========================================== -->
   <section id="experience" class="container">
     <h2 class="section-title">Professional Experience</h2>
-    
+
     <!-- Experience Timeline Target -->
     <div class="timeline-wrapper" id="experience-timeline">
       <!-- Dyn. Populated -->
@@ -115,7 +123,7 @@
        ========================================== -->
   <section id="projects" class="container">
     <h2 class="section-title">Featured Projects</h2>
-    
+
     <!-- Projects Grid Target -->
     <div class="projects-grid" id="projects-grid">
       <!-- Dyn. Populated -->
@@ -128,7 +136,7 @@
   <footer id="contact" class="footer">
     <div class="container" style="padding: 0 0 40px 0;">
       <div class="footer-grid">
-        
+
         <!-- Info Column Target -->
         <div class="footer-info-col" id="footer-info-col">
           <!-- Dyn. Populated -->
@@ -139,20 +147,23 @@
           <form class="contact-form" action="https://formsubmit.co/jasonsimon343@gmail.com" method="POST">
             <input type="hidden" name="_subject" value="New Portfolio Message!">
             <input type="hidden" name="_captcha" value="false">
-            
+
             <div class="form-group">
               <label for="form-name">Name</label>
               <input type="text" id="form-name" name="name" class="form-input" placeholder="Your Name" required>
             </div>
             <div class="form-group">
               <label for="form-email">Email</label>
-              <input type="email" id="form-email" name="email" class="form-input" placeholder="your.email@domain.com" required>
+              <input type="email" id="form-email" name="email" class="form-input" placeholder="your.email@domain.com"
+                required>
             </div>
             <div class="form-group">
               <label for="form-msg">Message</label>
-              <textarea id="form-msg" name="message" class="form-input" rows="4" placeholder="Write your message here..." required></textarea>
+              <textarea id="form-msg" name="message" class="form-input" rows="4"
+                placeholder="Write your message here..." required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" style="width: max-content; align-self: flex-start;">Send Message</button>
+            <button type="submit" class="btn btn-primary" style="width: max-content; align-self: flex-start;">Send
+              Message</button>
           </form>
         </div>
 
@@ -182,4 +193,5 @@
   <script src="config.js?v=1.0.2"></script>
   <script src="app.js?v=1.0.2"></script>
 </body>
+
 </html>
