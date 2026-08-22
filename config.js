@@ -8,7 +8,7 @@ const PortfolioConfig = {
   // --- MEDIA DIRECTORY SETTING ---
   // If you uploaded your images/videos to a subfolder on GitHub (e.g. a folder named "images"),
   // change this to "images/". If they are in the root directory alongside index.html, leave it as "".
-  mediaFolder: "images/", 
+  mediaFolder: "images/",
 
   // --- THEME OPTIONS ---
   theme: {
@@ -23,12 +23,12 @@ const PortfolioConfig = {
     name: "Jason Simon",
     // tagline: "Building autonomous systems and Physical AI. Feel free to reach out!",
     title: "Jason Simon | Building Autonomous Systems and Physical AI",
-    description: "Currently interning at Shield AI working on development of the X-Bat autonomous drone \n Past experience ranges from engineering automation cells at SpaceX to building collaborative lunar mechanisms for NASA \n Interested in artificial intelligence, robotics, aerospace, entrepreneurship, and investing",
+    description: "Aircraft Engineering Intern at Shield AI working on X-Bat liquid cooling \n Past experience ranges from engineering automation cells at SpaceX to building collaborative lunar mechanisms for NASA \n Interested in artificial intelligence, robotics, aerospace, entrepreneurship, and investing",
     location: "Home: SoCal | School: Philly",
     email: "jasonsimon343@gmail.com",
     linkedin: "https://www.linkedin.com/in/jason-simon3",
     github: "#",
-    
+
     // Academic Credentials (the 3 blocks)
     education: [
       { value: "MS + BSE, Mechanical Engineering", label: "UPenn | May 2027 (pursuing both degrees simultaneously)" },
@@ -39,6 +39,24 @@ const PortfolioConfig = {
 
   // --- WORK EXPERIENCE HISTORY ---
   experience: [
+    {
+      role: "Aircraft Engineering Intern - X-Bat Liquid Cooling",
+      company: "Shield AI",
+      location: "Frisco, TX",
+      period: "June 2026 – August 2026",
+      metrics: [
+        { value: "14", label: "Test Cart Sensors" },
+        { value: "15+", label: "Drawings Released" },
+        { value: "CAD + FEA", label: "Routing Brackets" },
+        { value: "10+", label: "Vibe Table Tests" }
+      ],
+      bulletPoints: [
+        "Developed an instrumented test cart for X-Bat liquid cooling to characterize heat exchangers, orifices, and thermal-system models using 14 sensors connected to a DAQ for data analysis",
+        "Designed lightweight structural brackets for X-Bat coolant hose routing and performed FEA under aircraft vibration, shock, and thermal loads to verify structural integrity and minimize mass",
+        "Owned requirements definition and build-vs-buy trade study for a coolant refill/de-aeration cart, implementing custom modifications on a selected COTS unit and conducting validation tests",
+        "Integrated a laser sensor for real-time aircraft coolant-level monitoring; produced 15+ assembly drawings and verified functionality, vibration durability, and manufacturability; designed test fixtures and executed vibration table qualification tests for major thermal components"
+      ]
+    },
     {
       role: "Starlink PCB Production Engineering Intern",
       company: "SpaceX",

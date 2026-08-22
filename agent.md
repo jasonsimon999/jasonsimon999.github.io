@@ -2,7 +2,7 @@
 **Author:** Jason Simon  
 **Contact:** Orange, CA 92867 | jasonsimon343@gmail.com | www.linkedin.com/in/jason-simon3  
 **Target Output:** Personal Portfolio Website Configuration & Content  
-**Last Updated:** June 2026  
+**Last Updated:** August 2026  
 
 ---
 
@@ -30,9 +30,12 @@ A junior at the University of Pennsylvania studying Mechanical Engineering. Inte
 ## 2. Professional Work Experience
 
 ### Shield AI
-**Position:** Engineering Intern  
-**Location / Timeline:** June 2026 – Present  
-* **Work Scope:** Currently interning at Shield AI, working on the development of the XBat autonomous drone.
+**Position:** Aircraft Engineering Intern - X-Bat Liquid Cooling  
+**Location / Timeline:** Frisco, TX | *June 2026 – August 2026*  
+* **Instrumentation & Thermal Testing:** Developed an instrumented test cart for X-Bat liquid cooling to characterize heat exchangers, orifices, and thermal-system models using 14 sensors connected to a DAQ for data analysis.
+* **FEA & Bracket Design:** Designed lightweight structural brackets for X-Bat coolant hose routing and performed FEA under aircraft vibration, shock, and thermal loads to verify structural integrity and minimize mass.
+* **Trade Study & Refill System:** Owned requirements definition and build-vs-buy trade study for a coolant refill/de-aeration cart, implementing custom modifications on a selected COTS unit and conducting validation tests.
+* **Sensor Integration & Qualification:** Integrated a laser sensor for real-time aircraft coolant-level monitoring; produced 15+ assembly drawings and verified functionality, vibration durability, and manufacturability; designed test fixtures and executed vibration table qualification tests for major thermal components.
 
 ### SpaceX
 **Position:** Starlink PCB Production Engineering Intern  
